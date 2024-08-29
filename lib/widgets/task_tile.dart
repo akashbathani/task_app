@@ -34,24 +34,11 @@ class TaskTile extends StatelessWidget {
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         color: Colors.red,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.edit, color: Colors.white),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => EditTaskScreen(task: task)),
-                );
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.delete, color: Colors.white),
-              onPressed: () {
-                context.read<TaskBloc>().add(DeleteTaskEvent(task.id));
-              },
-            ),
-          ],
+        child: IconButton(
+          icon: const Icon(Icons.delete, color: Colors.white),
+          onPressed: () {
+            context.read<TaskBloc>().add(DeleteTaskEvent(task.id));
+          },
         ),
       ),
       child: GestureDetector(
