@@ -6,8 +6,15 @@ import 'package:task_app/controllers/task_state.dart';
 import 'package:task_app/screens/add_task_screen.dart';
 import '../widgets/task_tile.dart';
 
-class TaskListScreen extends StatelessWidget {
+class TaskListScreen extends StatefulWidget {
   const TaskListScreen({super.key});
+
+  @override
+  _TaskListScreenState createState() => _TaskListScreenState();
+}
+
+class _TaskListScreenState extends State<TaskListScreen> {
+  TaskFilter _selectedFilter = TaskFilter.all;
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +32,27 @@ class TaskListScreen extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: TaskFilter.values.map((filter) {
+                final bool isSelected = _selectedFilter == filter;
                 return GestureDetector(
-                  onTap: () => context.read<TaskBloc>().add(FilterTasksEvent(filter)),
+                  onTap: () {
+                    setState(() {
+                      _selectedFilter = filter;
+                    });
+                    context.read<TaskBloc>().add(FilterTasksEvent(filter));
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
                       decoration: BoxDecoration(
-                        color: Colors.black,
+                        color: isSelected ? Colors.white : Colors.black,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
                         _getFilterText(filter),
-                        style: const TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: isSelected ? Colors.black : Colors.white,
+                        ),
                       ),
                     ),
                   ),
