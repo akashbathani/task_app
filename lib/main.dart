@@ -17,7 +17,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final TaskRepository taskRepository;
 
-  const MyApp({Key? key, required this.taskRepository}) : super(key: key);
+  const MyApp({super.key, required this.taskRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
           create: (context) => TaskBloc(taskRepository)..add(LoadTasksEvent()),
         ),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'To-Do App',
         color: Color(0xFFD9D4C4),
         home: TaskListScreen(),

@@ -9,7 +9,7 @@ class TaskTile extends StatelessWidget {
   final Task task;
   final int index;
 
-  const TaskTile({Key? key, required this.task, required this.index}) : super(key: key);
+  const TaskTile({super.key, required this.task, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +44,13 @@ class TaskTile extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           context.read<TaskBloc>().add(
-            UpdateTaskEvent(task.copyWith(isCompleted: !task.isCompleted)),
-          );
+                UpdateTaskEvent(task.copyWith(isCompleted: !task.isCompleted)),
+              );
         },
         child: Card(
           color: tileColors[index % tileColors.length],
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -57,12 +58,15 @@ class TaskTile extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Expanded(child: Text(task.title, style: const TextStyle(fontSize: 18))),
+                    Expanded(
+                        child: Text(task.title,
+                            style: const TextStyle(fontSize: 18))),
                     IconButton(
-                      icon: const Icon(Icons.edit, color: Colors.white),
+                      icon: const Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => EditTaskScreen(task: task)),
+                          MaterialPageRoute(
+                              builder: (context) => EditTaskScreen(task: task)),
                         );
                       },
                     ),
@@ -76,7 +80,7 @@ class TaskTile extends StatelessWidget {
                       child: Text(
                         task.title ?? '',
                         style: const TextStyle(
-                          fontSize: 48,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -90,7 +94,8 @@ class TaskTile extends StatelessWidget {
                             vertical: 10,
                           ),
                           decoration: BoxDecoration(
-                            color: task.isCompleted ? Colors.green : Colors.black,
+                            color:
+                                task.isCompleted ? Colors.green : Colors.black,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(

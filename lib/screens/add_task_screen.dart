@@ -59,7 +59,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter a task title';
+                        return ' prevent adding tasks without a title';
                       }
                       return null;
                     },
@@ -67,12 +67,13 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              Row(mainAxisAlignment: MainAxisAlignment.center,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     child: CustomButton(
                       onPressed: _submit,
-                      text:'Add Task',
+                      text: 'Add Task',
                       isSelected: true,
                     ),
                   ),

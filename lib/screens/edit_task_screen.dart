@@ -63,7 +63,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter a task title';
+                        return ' prevent adding tasks without a title';
                       }
                       return null;
                     },

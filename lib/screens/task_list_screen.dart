@@ -19,7 +19,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFD9D4C4),
       appBar: AppBar(
         title: const Text('To-Do List'),
         backgroundColor: const Color(0xFFD9D4C4),
@@ -69,12 +68,15 @@ class _TaskListScreenState extends State<TaskListScreen> {
                   if (state.tasks.isEmpty) {
                     return const Center(child: Text('No data found.'));
                   }
-                  return ListView.builder(
-                    itemCount: state.tasks.length,
-                    itemBuilder: (context, index) {
-                      final task = state.tasks[index];
-                      return TaskTile(task: task, index: index);
-                    },
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                      itemCount: state.tasks.length,
+                      itemBuilder: (context, index) {
+                        final task = state.tasks[index];
+                        return TaskTile(task: task, index: index);
+                      },
+                    ),
                   );
                 } else {
                   return const Center(child: Text('Something went wrong.'));
